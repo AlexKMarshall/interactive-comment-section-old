@@ -1,17 +1,13 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-
 import { ApolloServer } from 'apollo-server-micro'
 import Cors from 'micro-cors'
 import { createContext } from 'src/graphql/context'
-import { resolvers } from 'src/graphql/resolvers'
-import { typeDefs } from 'src/graphql/schema'
+import { schema } from 'src/graphql/schema'
 
 const cors = Cors()
 
 const apolloServer = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: createContext,
+  schema,
+  context: createContext
 })
 const startServer = apolloServer.start()
 
@@ -23,12 +19,12 @@ export default cors(async function handler(req, res) {
   await startServer
 
   await apolloServer.createHandler({
-    path: '/api/graphql',
+    path: '/api/graphql'
   })(req, res)
 })
 
 export const config = {
   api: {
-    bodyParser: false,
-  },
+    bodyParser: false
+  }
 }

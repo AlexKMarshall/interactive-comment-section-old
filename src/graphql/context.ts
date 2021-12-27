@@ -2,11 +2,11 @@ import { PrismaClient } from '@prisma/client'
 import prisma from 'src/prisma'
 
 export type Context = {
-  prisma: PrismaClient
+  db: PrismaClient
 }
 
 export async function createContext(): Promise<Context> {
   return {
-    prisma,
+    db: prisma
   }
 }

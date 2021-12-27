@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "dist",
+    "strict": true,
+    "lib": ["esnext"],
+    "esModuleInterop": true,
+    "baseUrl": "."
+  },
+
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
+}
