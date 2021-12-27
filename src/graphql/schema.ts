@@ -23,6 +23,16 @@ const Post = objectType({
   }
 })
 
+const Comment = objectType({
+  name: 'Comment',
+  definition(t) {
+    t.nonNull.id('id')
+    t.nonNull.string('comment')
+    t.DateTime('createdAt')
+    t.field('updatedAt', { type: DateTime })
+  }
+})
+
 const Query = queryType({
   definition(t) {
     t.list.field('getPosts', {
