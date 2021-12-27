@@ -1,5 +1,5 @@
 type Comment {
-  comment: String!
+  content: String
   createdAt: DateTime!
   id: ID!
   updatedAt: DateTime!

@@ -9,7 +9,6 @@ import {
 } from 'nexus'
 
 import { DateTimeResolver } from 'graphql-scalars'
-import { gql } from 'apollo-server-micro'
 import { join } from 'path'
 
 const DateTime = asNexusMethod(DateTimeResolver, 'DateTime')
@@ -18,7 +17,7 @@ const Comment = objectType({
   name: 'Comment',
   definition(t) {
     t.nonNull.id('id')
-    t.nonNull.string('comment')
+    t.string('content')
     t.nonNull.DateTime('createdAt')
     t.nonNull.DateTime('updatedAt')
   }
@@ -57,14 +56,3 @@ export const schema = makeSchema({
     ]
   }
 })
-
-export const typeDefs = gql`
-  type Post {
-    id: ID!
-    title: String!
-  }
-
-  type Query {
-    posts: [Post]!
-  }
-`

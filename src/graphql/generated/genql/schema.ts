@@ -8,7 +8,7 @@ export type Scalars = {
 }
 
 export interface Comment {
-    comment: Scalars['String']
+    content?: Scalars['String']
     createdAt: Scalars['DateTime']
     id: Scalars['ID']
     updatedAt: Scalars['DateTime']
@@ -21,7 +21,7 @@ export interface Query {
 }
 
 export interface CommentRequest{
-    comment?: boolean | number
+    content?: boolean | number
     createdAt?: boolean | number
     id?: boolean | number
     updatedAt?: boolean | number
@@ -52,14 +52,14 @@ export const isQuery = (obj?: { __typename?: any } | null): obj is Query => {
 
 
 export interface CommentPromiseChain{
-    comment: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>}),
+    content: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
     createdAt: ({get: (request?: boolean|number, defaultValue?: Scalars['DateTime']) => Promise<Scalars['DateTime']>}),
     id: ({get: (request?: boolean|number, defaultValue?: Scalars['ID']) => Promise<Scalars['ID']>}),
     updatedAt: ({get: (request?: boolean|number, defaultValue?: Scalars['DateTime']) => Promise<Scalars['DateTime']>})
 }
 
 export interface CommentObservableChain{
-    comment: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>}),
+    content: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
     createdAt: ({get: (request?: boolean|number, defaultValue?: Scalars['DateTime']) => Observable<Scalars['DateTime']>}),
     id: ({get: (request?: boolean|number, defaultValue?: Scalars['ID']) => Observable<Scalars['ID']>}),
     updatedAt: ({get: (request?: boolean|number, defaultValue?: Scalars['DateTime']) => Observable<Scalars['DateTime']>})

@@ -14,5 +14,5 @@ model Comment {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  comment   String
+  content   String
 }

@@ -5,14 +5,14 @@ import { client } from 'src/util/genqlClient'
 import { useQuery } from 'react-query'
 
 const Home: NextPage = () => {
-  const getPosts = () =>
+  const getComments = () =>
     client.query({
-      getPosts: {
+      getComments: {
         id: true,
-        title: true
+        content: true
       }
     })
-  const postsQuery = useQuery(['posts'], getPosts)
+  const commentsQuery = useQuery(['comments'], getComments)
 
   return (
     <>
@@ -25,17 +25,17 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Interactive Comment Section</h1>
-      {postsQuery.isLoading ? <div>Loading...</div> : null}
-      {postsQuery.isError ? (
-        <pre>{JSON.stringify(postsQuery.error, null, 2)}</pre>
+      {commentsQuery.isLoading ? <div>Loading...</div> : null}
+      {commentsQuery.isError ? (
+        <pre>{JSON.stringify(commentsQuery.error, null, 2)}</pre>
       ) : null}
-      {postsQuery.isSuccess ? (
+      {commentsQuery.isSuccess ? (
         <ul>
-          {postsQuery.data.getPosts?.map(post => (
-            <li key={post.id}>
-              <Link href={`posts/${post.id}`}>
-                <a>{post.title}</a>
-              </Link>
+          {commentsQuery.data.getComments?.map(comment => (
+            <li key={comment.id}>
+              <article>
+                <p>{comment.content}</p>
+              </article>
             </li>
           ))}
         </ul>

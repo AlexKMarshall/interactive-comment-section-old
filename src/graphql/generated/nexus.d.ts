@@ -45,7 +45,7 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Comment: { // root type
-    comment: string; // String!
+    content?: string | null; // String
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // ID!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
@@ -65,7 +65,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Comment: { // field return type
-    comment: string; // String!
+    content: string | null; // String
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // ID!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
@@ -77,7 +77,7 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Comment: { // field return type name
-    comment: 'String'
+    content: 'String'
     createdAt: 'DateTime'
     id: 'ID'
     updatedAt: 'DateTime'

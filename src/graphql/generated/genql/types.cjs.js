@@ -7,7 +7,7 @@ module.exports = {
     ],
     "types": {
         "Comment": {
-            "comment": [
+            "content": [
                 1
             ],
             "createdAt": [
