@@ -10,17 +10,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id       String    @id @default(uuid())
-  title    String
-  comments Comment[]
-}
-
 model Comment {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   comment   String
-  Post      Post?    @relation(fields: [postId], references: [id])
-  postId    String?
 }

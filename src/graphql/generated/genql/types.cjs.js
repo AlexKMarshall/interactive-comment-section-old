@@ -1,40 +1,37 @@
 module.exports = {
     "scalars": [
-        0,
+        1,
         2,
         3,
         5
     ],
     "types": {
-        "DateTime": {},
-        "Post": {
+        "Comment": {
+            "comment": [
+                1
+            ],
+            "createdAt": [
+                3
+            ],
             "id": [
                 2
             ],
-            "title": [
+            "updatedAt": [
                 3
             ],
             "__typename": [
-                3
+                1
             ]
         },
-        "ID": {},
         "String": {},
+        "ID": {},
+        "DateTime": {},
         "Query": {
-            "getOnePost": [
-                1,
-                {
-                    "id": [
-                        3,
-                        "String!"
-                    ]
-                }
-            ],
-            "getPosts": [
-                1
+            "getComments": [
+                0
             ],
             "__typename": [
-                3
+                1
             ]
         },
         "Boolean": {}

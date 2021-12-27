@@ -1,43 +1,45 @@
 import {FieldsSelection,Observable} from '@genql/runtime'
 
 export type Scalars = {
-    DateTime: any,
-    ID: string,
     String: string,
+    ID: string,
+    DateTime: any,
     Boolean: boolean,
 }
 
-export interface Post {
+export interface Comment {
+    comment: Scalars['String']
+    createdAt: Scalars['DateTime']
     id: Scalars['ID']
-    title: Scalars['String']
-    __typename: 'Post'
+    updatedAt: Scalars['DateTime']
+    __typename: 'Comment'
 }
 
 export interface Query {
-    getOnePost?: Post
-    getPosts?: (Post | undefined)[]
+    getComments?: (Comment | undefined)[]
     __typename: 'Query'
 }
 
-export interface PostRequest{
+export interface CommentRequest{
+    comment?: boolean | number
+    createdAt?: boolean | number
     id?: boolean | number
-    title?: boolean | number
+    updatedAt?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
 export interface QueryRequest{
-    getOnePost?: [{id: Scalars['String']},PostRequest]
-    getPosts?: PostRequest
+    getComments?: CommentRequest
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
 
-const Post_possibleTypes = ['Post']
-export const isPost = (obj?: { __typename?: any } | null): obj is Post => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isPost"')
-  return Post_possibleTypes.includes(obj.__typename)
+const Comment_possibleTypes = ['Comment']
+export const isComment = (obj?: { __typename?: any } | null): obj is Comment => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "isComment"')
+  return Comment_possibleTypes.includes(obj.__typename)
 }
 
 
@@ -49,22 +51,24 @@ export const isQuery = (obj?: { __typename?: any } | null): obj is Query => {
 }
 
 
-export interface PostPromiseChain{
+export interface CommentPromiseChain{
+    comment: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>}),
+    createdAt: ({get: (request?: boolean|number, defaultValue?: Scalars['DateTime']) => Promise<Scalars['DateTime']>}),
     id: ({get: (request?: boolean|number, defaultValue?: Scalars['ID']) => Promise<Scalars['ID']>}),
-    title: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>})
+    updatedAt: ({get: (request?: boolean|number, defaultValue?: Scalars['DateTime']) => Promise<Scalars['DateTime']>})
 }
 
-export interface PostObservableChain{
+export interface CommentObservableChain{
+    comment: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>}),
+    createdAt: ({get: (request?: boolean|number, defaultValue?: Scalars['DateTime']) => Observable<Scalars['DateTime']>}),
     id: ({get: (request?: boolean|number, defaultValue?: Scalars['ID']) => Observable<Scalars['ID']>}),
-    title: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>})
+    updatedAt: ({get: (request?: boolean|number, defaultValue?: Scalars['DateTime']) => Observable<Scalars['DateTime']>})
 }
 
 export interface QueryPromiseChain{
-    getOnePost: ((args: {id: Scalars['String']}) => PostPromiseChain & {get: <R extends PostRequest>(request: R, defaultValue?: (FieldsSelection<Post, R> | undefined)) => Promise<(FieldsSelection<Post, R> | undefined)>}),
-    getPosts: ({get: <R extends PostRequest>(request: R, defaultValue?: ((FieldsSelection<Post, R> | undefined)[] | undefined)) => Promise<((FieldsSelection<Post, R> | undefined)[] | undefined)>})
+    getComments: ({get: <R extends CommentRequest>(request: R, defaultValue?: ((FieldsSelection<Comment, R> | undefined)[] | undefined)) => Promise<((FieldsSelection<Comment, R> | undefined)[] | undefined)>})
 }
 
 export interface QueryObservableChain{
-    getOnePost: ((args: {id: Scalars['String']}) => PostObservableChain & {get: <R extends PostRequest>(request: R, defaultValue?: (FieldsSelection<Post, R> | undefined)) => Observable<(FieldsSelection<Post, R> | undefined)>}),
-    getPosts: ({get: <R extends PostRequest>(request: R, defaultValue?: ((FieldsSelection<Post, R> | undefined)[] | undefined)) => Observable<((FieldsSelection<Post, R> | undefined)[] | undefined)>})
+    getComments: ({get: <R extends CommentRequest>(request: R, defaultValue?: ((FieldsSelection<Comment, R> | undefined)[] | undefined)) => Observable<((FieldsSelection<Comment, R> | undefined)[] | undefined)>})
 }

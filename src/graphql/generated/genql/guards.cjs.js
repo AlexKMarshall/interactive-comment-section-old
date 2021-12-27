@@ -1,8 +1,8 @@
 
-var Post_possibleTypes = ['Post']
-module.exports.isPost = function(obj) {
-  if (!obj || !obj.__typename) throw new Error('__typename is missing in "isPost"')
-  return Post_possibleTypes.includes(obj.__typename)
+var Comment_possibleTypes = ['Comment']
+module.exports.isComment = function(obj) {
+  if (!obj || !obj.__typename) throw new Error('__typename is missing in "isComment"')
+  return Comment_possibleTypes.includes(obj.__typename)
 }
 
 

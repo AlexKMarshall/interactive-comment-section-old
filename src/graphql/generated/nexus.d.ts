@@ -44,9 +44,11 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
-  Post: { // root type
+  Comment: { // root type
+    comment: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // ID!
-    title: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   Query: {};
 }
@@ -62,33 +64,30 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
-  Post: { // field return type
+  Comment: { // field return type
+    comment: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // ID!
-    title: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   Query: { // field return type
-    getOnePost: NexusGenRootTypes['Post'] | null; // Post
-    getPosts: Array<NexusGenRootTypes['Post'] | null> | null; // [Post]
+    getComments: Array<NexusGenRootTypes['Comment'] | null> | null; // [Comment]
   }
 }
 
 export interface NexusGenFieldTypeNames {
-  Post: { // field return type name
+  Comment: { // field return type name
+    comment: 'String'
+    createdAt: 'DateTime'
     id: 'ID'
-    title: 'String'
+    updatedAt: 'DateTime'
   }
   Query: { // field return type name
-    getOnePost: 'Post'
-    getPosts: 'Post'
+    getComments: 'Comment'
   }
 }
 
 export interface NexusGenArgTypes {
-  Query: {
-    getOnePost: { // args
-      id: string; // String!
-    }
-  }
 }
 
 export interface NexusGenAbstractTypeMembers {
