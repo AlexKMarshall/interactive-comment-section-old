@@ -1,3 +1,4 @@
+import { Comment } from 'src/components'
 import Head from 'next/head'
 import Link from 'next/link'
 import { NextPage } from 'next'
@@ -9,8 +10,8 @@ const Home: NextPage = () => {
     client.query({
       getComments: {
         id: true,
-        content: true
-      }
+        content: true,
+      },
     })
   const commentsQuery = useQuery(['comments'], getComments)
 
@@ -31,11 +32,9 @@ const Home: NextPage = () => {
       ) : null}
       {commentsQuery.isSuccess ? (
         <ul>
-          {commentsQuery.data.getComments?.map(comment => (
+          {commentsQuery.data.getComments?.map((comment) => (
             <li key={comment.id}>
-              <article>
-                <p>{comment.content}</p>
-              </article>
+              <Comment comment={comment} />
             </li>
           ))}
         </ul>

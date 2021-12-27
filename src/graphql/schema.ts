@@ -5,7 +5,7 @@ import {
   nonNull,
   objectType,
   queryType,
-  stringArg
+  stringArg,
 } from 'nexus'
 
 import { DateTimeResolver } from 'graphql-scalars'
@@ -17,10 +17,10 @@ const Comment = objectType({
   name: 'Comment',
   definition(t) {
     t.nonNull.id('id')
-    t.string('content')
+    t.nonNull.string('content')
     t.nonNull.DateTime('createdAt')
     t.nonNull.DateTime('updatedAt')
-  }
+  },
 })
 
 const Query = queryType({
@@ -29,30 +29,30 @@ const Query = queryType({
       type: 'Comment',
       resolve: async (_parent, _args, ctx) => {
         return ctx.db.comment.findMany()
-      }
+      },
     })
-  }
+  },
 })
 const Mutation = mutationType({
-  definition(t) {}
+  definition(t) {},
 })
 
 export const schema = makeSchema({
   types: [Query, Comment, DateTime],
   outputs: {
     typegen: join(__dirname, 'generated', 'nexus.d.ts'),
-    schema: join(__dirname, 'schema.graphql')
+    schema: join(__dirname, 'schema.graphql'),
   },
   contextType: {
     module: join(process.cwd(), 'src/graphql/context.ts'),
-    export: 'Context'
+    export: 'Context',
   },
   sourceTypes: {
     modules: [
       {
         module: '@prisma/client',
-        alias: 'db'
-      }
-    ]
-  }
+        alias: 'db',
+      },
+    ],
+  },
 })
